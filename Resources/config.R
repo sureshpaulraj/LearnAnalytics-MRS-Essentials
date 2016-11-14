@@ -11,12 +11,15 @@
 source("Resources/00_helper_functions.R") 
 
 ## Set Options!
-date_to_checkpoint_to <- "2015-11-30" ## approximately the last date associated with the current version of R Open used in MRS/MRC
+## check if they exist so you can adjust in notebook if you want...
+if (!exists(verbose)) verbose <- FALSE 
+if (!exists(clean)) clean <- TRUE
+## approximately the last date associated with the current version of R Open used in MRS/MRC
+if (!exists(date_to_checkpoint_to)) date_to_checkpoint_to <- "2015-11-30" 
 options(
     stringsAsFactors = FALSE,
     repos = paste0("https://mran.revolutionanalytics.com/snapshot/",date_to_checkpoint_to) ## only set here in case checkpoint is not installed!
 )
-verbose = FALSE
 
 ##############################
 ## PACKAGES
@@ -52,6 +55,14 @@ checkpoint(date_to_checkpoint_to, verbose = verbose)
 resources_dir <- file.path(get_repo_dir(), "Resources")
 source(file.path(resources_dir, "01_00_data.R"))
 create_data(get_repo_dir())
+
+
+## clean data
+files2clean <- list.files(
+    path = file.path(get_repo_dir(), "data"), 
+    pattern = '.xdf$', 
+    full.names = TRUE)
+if (clean) file.remove(files2clean)
 
 ##############################
 ## preprocessing!

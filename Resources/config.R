@@ -12,10 +12,10 @@ source("Resources/00_helper_functions.R")
 
 ## Set Options!
 ## check if they exist so you can adjust in notebook if you want...
-if (!exists(verbose)) verbose <- FALSE 
-if (!exists(clean)) clean <- TRUE
+if (!exists('verbose')) verbose <- FALSE 
+if (!exists('clean')) clean <- TRUE
 ## approximately the last date associated with the current version of R Open used in MRS/MRC
-if (!exists(date_to_checkpoint_to)) date_to_checkpoint_to <- "2015-11-30" 
+if (!exists('date_to_checkpoint_to')) date_to_checkpoint_to <- "2015-11-30" 
 options(
     stringsAsFactors = FALSE,
     repos = paste0("https://mran.revolutionanalytics.com/snapshot/",date_to_checkpoint_to) ## only set here in case checkpoint is not installed!
